@@ -1,23 +1,19 @@
 
 
-
-def get_seat_id(code:str)->tuple:
-    row=[0,127]
-    col=[0,7]
+def get_seat_id(code:str)->int:
+    rowl=128
+    coll=8
+    row=0
+    col=0
     for r in code[:7]:
-        if r=='F':
-            row[1]=(row[1]+row[0])//2
-        else:
-            row[0]=(row[1]+row[0])//2+1
+        rowl//=2
+        if r=='B':
+            row+=rowl
     for c in code[7:]:
-        if c=='L':
-            col[1]=(col[1]+col[0])//2
-        else:
-            col[0]=(col[1]+col[0])//2+1
-
-    #print(row[0],col[0],row[0]*8+col[0])
-    return row[0]*8+col[0]
-
+        coll//=2
+        if c=='R':
+            col+=coll
+    return row*8+col
 
 seat_ids=[]
 with open('5.in','r',encoding='utf8') as f:
