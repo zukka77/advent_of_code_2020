@@ -1,6 +1,8 @@
 import os
 from collections import defaultdict
 
+BAG_COLOR='shiny_gold'
+
 def find_container(color,contained,found):
     found.add(color)
     for c in contained[color]:
@@ -27,12 +29,10 @@ with open(os.path.join(os.path.dirname(os.path.abspath(__file__)),__file__.repla
             color=color.replace(' ','_')
             containers[container].append({"color":color,"q":int(q)})
             contained[color].add(container)
-n_bags=0
 
 
-
-good_container=find_container('shiny_gold',contained,set())-{'shiny_gold'}
+good_container=find_container(BAG_COLOR,contained,set())-{BAG_COLOR}
 print(len(good_container))
-print(find_bags('shiny_gold',containers)-1)
+print(find_bags(BAG_COLOR,containers)-1)
 
             
